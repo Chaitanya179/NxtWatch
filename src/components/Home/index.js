@@ -32,18 +32,25 @@ class Home extends Component {
           const {dark} = value
           return (
             <HomeDiv dark={dark}>
-              <Header />
+              <Header active="Home" />
               <BottomDiv>
-                <SideBar />
+                <SideBar active="Home" />
                 <Content>
-                  <Banner close={close}>
+                  <Banner close={close} data-testid="banner">
                     <CloseDiv>
-                      <Close onClick={this.close} type="button">
+                      <Close
+                        onClick={this.close}
+                        type="button"
+                        data-testid="close"
+                      >
                         X
                       </Close>
                     </CloseDiv>
                     <BannerContent>
-                      <Img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" />
+                      <Img
+                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                        alt="nxt watch logo"
+                      />
                       <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
                       <BuyBtn type="button">GET IT NOW</BuyBtn>
                     </BannerContent>

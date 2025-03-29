@@ -1,7 +1,7 @@
 import {FaMoon} from 'react-icons/fa'
 import Popup from 'reactjs-popup'
 import {IoSunnyOutline, IoLogOutOutline, IoMenu} from 'react-icons/io5'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import SmSideBar from '../SmSideBar'
 import {
@@ -29,15 +29,23 @@ const Header = props => {
     <ReactContext.Consumer>
       {value => {
         const {dark, setMode} = value
+        const {active} = props
         const imageUrl = dark
           ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
         console.log(dark)
         return (
           <MainDiv dark={dark}>
-            <NavImg src={imageUrl} alt="website logo" />
+            <Link to="/">
+              <NavImg src={imageUrl} alt="website logo" />
+            </Link>
             <EventDiv>
-              <ModeBtn type="button" dark={dark} onClick={setMode}>
+              <ModeBtn
+                type="button"
+                dark={dark}
+                onClick={setMode}
+                data-testid="theme"
+              >
                 {dark ? <IoSunnyOutline /> : <FaMoon />}
               </ModeBtn>
               <ProfImg
@@ -54,7 +62,7 @@ const Header = props => {
               >
                 {close => (
                   <LogoutDiv dark={dark}>
-                    <P dark={dark}>Are you sure you want to logout</P>
+                    <P dark={dark}>Are you sure, you want to logout</P>
                     <PopDiv>
                       <PopBtn type="button" text="cancel" onClick={close}>
                         Cancel
@@ -74,7 +82,7 @@ const Header = props => {
                   </SmModeBtn>
                 }
               >
-                {close => <SmSideBar close={close} />}
+                {close => <SmSideBar close={close} active={active} />}
               </Popup>
               <Popup
                 modal
@@ -86,7 +94,7 @@ const Header = props => {
               >
                 {close => (
                   <LogoutDiv dark={dark}>
-                    <P dark={dark}>Are you sure you want to logout</P>
+                    <P dark={dark}>Are you sure, you want to logout</P>
                     <PopDiv>
                       <PopBtn
                         type="button"

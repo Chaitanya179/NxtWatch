@@ -46,9 +46,9 @@ const Saved = () => (
 
       return (
         <HomeDiv dark={dark}>
-          <Header />
+          <Header active="Saved Videos" />
           <BottomDiv>
-            <SideBar />
+            <SideBar active="Saved Videos" />
             <Content>{saved.length === 0 ? failed() : append()}</Content>
           </BottomDiv>
         </HomeDiv>

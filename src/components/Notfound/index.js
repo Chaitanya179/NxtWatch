@@ -17,7 +17,7 @@ const Notfound = () => (
           <BottomDiv>
             <SideBar />
             <NotDiv>
-              <Img src={imageUrl} />
+              <Img src={imageUrl} alt="not found" />
               <H dark={dark}>Page Not Found</H>
               <P dark={dark}>
                 We are sorry, the page you requested could not be found.

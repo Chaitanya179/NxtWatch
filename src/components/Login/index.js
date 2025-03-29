@@ -105,7 +105,6 @@ class Login extends Component {
                       type="checkbox"
                       id="showpassword"
                       onClick={this.show}
-                      dark={dark}
                     />
                     <Label htmlFor="showpassword" dark={dark}>
                       Show Password

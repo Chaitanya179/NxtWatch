@@ -23,10 +23,11 @@ const SideBarList = [
   {name: 'Saved Videos', icon: <IoSaveOutline />},
 ]
 
-const SideBar = () => (
+const SideBar = props => (
   <ReactContext.Consumer>
     {value => {
-      const {dark, active, setActive} = value
+      const {dark} = value
+      const {active} = props
       return (
         <>
           <SideMain dark={dark}>
@@ -40,14 +41,7 @@ const SideBar = () => (
                 return (
                   <StyledLink to={lname} key={name}>
                     <Li>
-                      <LiBtn
-                        type="button"
-                        onClick={() => {
-                          setActive(name)
-                        }}
-                        dark={dark}
-                        active={active === name}
-                      >
+                      <LiBtn type="button" dark={dark} active={active === name}>
                         {icon}
                         <P dark={dark}>{name}</P>
                       </LiBtn>
@@ -57,7 +51,7 @@ const SideBar = () => (
               })}
             </Ul>
             <LastDiv>
-              <Lhead dark={dark}>Contact Us</Lhead>
+              <Lhead dark={dark}>CONTACT US</Lhead>
               <LImgDiv>
                 <Limg
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
@@ -72,7 +66,9 @@ const SideBar = () => (
                   alt="linked in logo"
                 />
               </LImgDiv>
-              <Lp dark={dark}>Enjoy! Now you can see your recommendations!</Lp>
+              <Lp dark={dark}>
+                Enjoy! Now to see your channels and recommendations!
+              </Lp>
             </LastDiv>
           </SideMain>
         </>

@@ -1,7 +1,16 @@
 import {IoHome, IoSaveOutline} from 'react-icons/io5'
 import {AiFillFire} from 'react-icons/ai'
 import {FaGamepad} from 'react-icons/fa'
-import {SmSideMain, Ul, Li, LiBtn, P, SmClose, ClsBtn} from './styledcomponents'
+import {
+  SmSideMain,
+  Ul,
+  Li,
+  LiBtn,
+  P,
+  SmClose,
+  ClsBtn,
+  StyledLink,
+} from './styledcomponents'
 import ReactContext from '../../Context/ReactContext'
 
 const SideBarList = [
@@ -12,11 +21,11 @@ const SideBarList = [
 ]
 
 const SmSideBar = props => {
-  const {close} = props
+  const {close, active} = props
   return (
     <ReactContext.Consumer>
       {value => {
-        const {dark, active, setActive} = value
+        const {dark} = value
         return (
           <SmSideMain dark={dark}>
             <SmClose>
@@ -27,20 +36,19 @@ const SmSideBar = props => {
             <Ul>
               {SideBarList.map(i => {
                 const {name, icon} = i
+                let lname = name.toLowerCase()
+                lname = lname.split(' ')
+                lname = lname.join('-')
+                lname = lname === 'home' ? '/' : `/${lname}`
                 return (
-                  <Li key={name}>
-                    <LiBtn
-                      type="button"
-                      onClick={() => {
-                        setActive(name)
-                      }}
-                      dark={dark}
-                      active={active === name}
-                    >
-                      {icon}
-                      <P dark={dark}>{name}</P>
-                    </LiBtn>
-                  </Li>
+                  <StyledLink to={lname} key={name}>
+                    <Li key={name}>
+                      <LiBtn type="button" dark={dark} active={active === name}>
+                        {icon}
+                        <P dark={dark}>{name}</P>
+                      </LiBtn>
+                    </Li>
+                  </StyledLink>
                 )
               })}
             </Ul>

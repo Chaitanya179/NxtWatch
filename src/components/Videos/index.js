@@ -57,7 +57,7 @@ class Videos extends Component {
   }
 
   loader = () => (
-    <LoaderDiv>
+    <LoaderDiv data-tesid="loader">
       <Loader type="Oval" color="#3b82f6" height={50} width={50} />
     </LoaderDiv>
   )
@@ -79,9 +79,7 @@ class Videos extends Component {
               alt="no videos"
             />
             <H dark={dark}>No Search Results Found</H>
-            <P dark={dark}>
-              Try dufferent keywords or remove the search filter.
-            </P>
+            <P dark={dark}>Try different key words or remove search filter</P>
           </LoaderDiv>
         )
       }}
@@ -152,7 +150,12 @@ class Videos extends Component {
                   onChange={this.search}
                   onKeyDown={this.setSearch}
                 />
-                <SearchIcon dark={dark} onClick={this.btnSetSearch}>
+                <SearchIcon
+                  dark={dark}
+                  type="button"
+                  onClick={this.btnSetSearch}
+                  data-testid="searchButton"
+                >
                   <IoSearchSharp />
                 </SearchIcon>
               </Searchdiv>

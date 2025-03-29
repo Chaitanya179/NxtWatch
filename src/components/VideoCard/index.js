@@ -25,9 +25,9 @@ const VideoCard = props => {
         return (
           <Li>
             <StyledLink to={`/videos/${id}`}>
-              <Img src={thumbnail} alt="thumbnail" />
+              <Img src={thumbnail} alt="video thumbnail" />
               <ProfileDiv>
-                <ProfileImg src={profileImageUrl} alt="profile" />
+                <ProfileImg src={profileImageUrl} alt="channel logo" />
                 <P dark={dark}>{title}</P>
               </ProfileDiv>
               <DetailsDiv>

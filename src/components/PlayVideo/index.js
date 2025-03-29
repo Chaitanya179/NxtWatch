@@ -47,7 +47,7 @@ class PlayVideo extends Component {
   failed = () => <Failed retry={this.retry} />
 
   loader = () => (
-    <LoaderDiv>
+    <LoaderDiv data-testid="loader">
       <Loader type="Oval" color="#3b82f6" height={50} width={50} />
     </LoaderDiv>
   )
@@ -142,7 +142,7 @@ class PlayVideo extends Component {
               thumbnailUrl,
               title,
               viewCount,
-              publishedDate,
+              published,
               name,
               profileImg,
             })
@@ -187,7 +187,7 @@ class PlayVideo extends Component {
               </DetailDiv>
               <hr />
               <SubDetailDiv>
-                <Img src={profileImg} alt="profile" />
+                <Img src={profileImg} alt="channel logo" />
                 <Bdiv>
                   <Lp dark={dark}>{name}</Lp>
                   <Dp>{subscriberCount}</Dp>

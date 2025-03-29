@@ -12,41 +12,42 @@ import ReactContext from './Context/ReactContext'
 import './App.css'
 
 class App extends Component {
-  state = {dark: false, active: 'Home', saved: []}
+  state = {dark: false, saved: []}
 
   setMode = () => {
     this.setState(prev => ({dark: !prev.dark}))
   }
 
-  setActive = name => {
-    this.setState({active: name})
-  }
-
   setSave = video => {
-    this.setState(prev => ({saved: [...prev.saved, video]}))
+    this.setState(prev => {
+      const {saved} = this.state
+      const isPresent = saved.findIndex(i => i.id === video.id)
+      if (isPresent === -1) {
+        return {saved: [...prev.saved, video]}
+      }
+      return {saved: prev.saved.filter(i => i.id !== video.id)}
+    })
   }
 
   render() {
-    const {dark, active, saved} = this.state
+    const {dark, saved} = this.state
     return (
       <ReactContext.Provider
         value={{
           dark,
-          active,
           saved,
           setMode: this.setMode,
-          setActive: this.setActive,
           setSave: this.setSave,
         }}
       >
         <Switch>
-          <Route exact path='/login' Component={Login} />
-          <ProtectedRoute exact path='/' Component={Home} />
-          <ProtectedRoute exact path='/videos/:id' component={PlayVideo} />
-          <ProtectedRoute exact path='/trending' Component={Trending} />
-          <ProtectedRoute exact path='/gaming' Component={Gaming} />
-          <ProtectedRoute exact path='/saved-videos' Component={Saved} />
-          <Route Component={Notfound} />
+          <Route exact path="/login" component={Login} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/videos/:id" component={PlayVideo} />
+          <ProtectedRoute exact path="/trending" component={Trending} />
+          <ProtectedRoute exact path="/gaming" component={Gaming} />
+          <ProtectedRoute exact path="/saved-videos" component={Saved} />
+          <Route component={Notfound} />
         </Switch>
       </ReactContext.Provider>
     )
